@@ -1,5 +1,5 @@
 /* Спільний модуль: сховище товарів (localStorage), кошик, допоміжні функції */
-const STORE_KEY = "jolly_products_v3";
+const STORE_KEY = "jolly_products_v4";
 const CART_KEY = "jolly_cart_v1";
 
 const CATEGORY_LABELS = { clothing: "Одяг", footwear: "Взуття", accessories: "Аксесуари" };

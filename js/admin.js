@@ -207,6 +207,17 @@
     URL.revokeObjectURL(a.href);
   };
 
+  /* Експорт у готовий js/products.js: замініть ним файл у репозиторії, щоб зміни побачили всі відвідувачі */
+  $("exportJsBtn").onclick = () => {
+    const rows = Store.all().map(p => "  " + JSON.stringify(p)).join(",\n");
+    const text = "/* Згенеровано з адмін-панелі. Ціни в гривнях. */\nconst DEFAULT_PRODUCTS = [\n" + rows + "\n];\n";
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([text], { type: "text/javascript" }));
+    a.download = "products.js";
+    a.click();
+    URL.revokeObjectURL(a.href);
+  };
+
   /* ---------- Замовлення ---------- */
   const ST = { new: "Нове", processing: "В обробці", done: "Виконано", cancel: "Скасовано" };
   function renderOrders() {
