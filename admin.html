@@ -9,8 +9,25 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Nunito:wght@300;400;600;700;800&subset=cyrillic&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    body.admin-body:not(.authed) > :not(#loginBox):not(script) { display: none !important; }
+    body.authed #loginBox { display: none; }
+    #loginBox { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #F8F3F1; padding: 20px; }
+    #loginBox form { background: #fff; padding: 36px; max-width: 360px; width: 100%; border-radius: 6px; box-shadow: 0 10px 40px rgba(0,0,0,.08); }
+    #loginBox h2 { margin: 0 0 18px; }
+    #loginBox input { width: 100%; box-sizing: border-box; margin-bottom: 12px; }
+  </style>
 </head>
 <body class="admin-body">
+
+<div id="loginBox">
+  <form id="loginForm">
+    <h2>Вхід в адмін-панель</h2>
+    <input type="password" id="loginPass" placeholder="Пароль" autocomplete="current-password" required autofocus>
+    <div class="err" id="loginErr" style="margin-bottom:10px"></div>
+    <button type="submit" class="btn small plain">Увійти</button>
+  </form>
+</div>
 
 <div class="admin-top">
   <div class="container">
@@ -18,7 +35,10 @@
       <span class="logo">Jólly.<small>HOUSE</small></span>
       <h1>Адмін-панель товарів</h1>
     </div>
-    <a href="index.html" class="btn small outline plain" style="color:#fff;border-color:#fff">← На сайт</a>
+    <div style="display:flex;gap:10px">
+      <button type="button" id="logoutBtn" class="btn small outline plain" style="color:#fff;border-color:#fff">Вийти</button>
+      <a href="index.html" class="btn small outline plain" style="color:#fff;border-color:#fff">← На сайт</a>
+    </div>
   </div>
 </div>
 
@@ -36,6 +56,7 @@
     </select>
     <button class="btn small" id="addBtn">Додати товар</button>
     <button class="ibtn" id="exportBtn">Експорт JSON</button>
+    <button class="ibtn" id="exportJsBtn" title="Файл для заміни js/products.js у репозиторії">Експорт products.js</button>
     <button class="ibtn" id="importBtn">Імпорт JSON</button>
     <input type="file" id="importFile" accept=".json,application/json" style="display:none">
     <button class="ibtn danger" id="resetBtn">Скинути до початкових</button>
@@ -135,6 +156,7 @@
 <script src="js/products.js"></script>
 <script src="js/store.js"></script>
 <script src="js/dropdown.js"></script>
+<script src="js/auth.js"></script>
 <script src="js/admin.js"></script>
 </body>
 </html>
